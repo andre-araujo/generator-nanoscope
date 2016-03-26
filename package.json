@@ -1,0 +1,14 @@
+{
+  "name": "generator-nanoscope",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Andre L S Araujo",
+  "license": "ISC",
+  "dependencies": {
+    "yeoman-generator": "^0.22.5"
+  }
+}
