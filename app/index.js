@@ -18,6 +18,13 @@ module.exports = generators.Base.extend({
     default: function() {
     },
     writing: {
+
+        packageJson: function() {
+            this.copy("_package.json", "package.json")
+        },
+        git: function() {
+            this.copy("gitignore", ".gitignore")
+        },
         bower: function() {
             var bowerJson = {
                 name: 'Nanoscope',
@@ -27,6 +34,12 @@ module.exports = generators.Base.extend({
             };
             bowerJson.dependencies['jquery'] = '~1.12.0';
             this.fs.writeJSON('bower.json', bowerJson);
+
+            this.copy("bowerrc", ".bowerrc")
+        },
+        gulp: function() {
+            this.copy("_gulpfile.js", "gulpfile.js")
+            this.copy("_gulp.config.js", "gulp.config.js")
         },
         statics: function() {
             //this.copy("_test.txt", "src/test.txt");
@@ -44,6 +57,8 @@ module.exports = generators.Base.extend({
 
         },
         jade: function() {
+            this.copy("_index.jade", "src/index.jade")
+
             this.fs.copyTpl(
                 this.templatePath("_layout.jade"),
                 this.destinationPath("src/_layout.jade"),
