@@ -30,7 +30,8 @@ module.exports = generators.Base.extend({
                 type: "input",
                 name: "appname",
                 message: "Application name",
-                default: "myApp"
+                default: this.config.get("appname") || "myApp",
+                //store: true
             },
             {
                 type: "checkbox",
@@ -47,16 +48,22 @@ module.exports = generators.Base.extend({
                         value: "umbrellajs",
                         checked: "true"
                     }
-                ]
+                ],
             }
 
         ], function(resp) {
             console.log(resp);
-            this.appname = resp.appname
-            done();
 
-            this.includeJquery = _.includes(resp.jslibs, "jquery");
-            this.includeUmbrellajs = _.includes(resp.jslibs, "umbrellajs");
+            this.config.set("appname", resp.appname);
+
+            this.config.set("libs", {
+                jquery: _.includes(resp.jslibs, "jquery"),
+                umbrellajs: _.includes(resp.jslibs, "umbrellajs")
+            })
+
+            this.config.save();
+
+            done();
 
         }.bind(this));
     },
@@ -74,16 +81,16 @@ module.exports = generators.Base.extend({
         },
         bower: function() {
             var bowerJson = {
-                name: this.appname,
+                name: this.config.get("appname"),
                 license: 'MIT',
                 dependencies: {}
             };
 
-            if(this.includeJquery) {
+            if(this.config.get("libs").jquery) {
                 bowerJson.dependencies['jquery'] = '~1.12.0';
             }
 
-            if(this.includeUmbrellajs) {
+            if(this.config.get("libs").umbrella) {
                 bowerJson.dependencies['umbrella'] = '^2.0.1';
             }
             bowerJson.dependencies['umbrella'] = '^2.0.1';
@@ -97,7 +104,6 @@ module.exports = generators.Base.extend({
             this.copy("_gulp.config.js", "gulp.config.js")
         },
         statics: function() {
-            //this.copy("_test.txt", "src/test.txt");
             // inside assets
             this.directory("assets/fonts", "src/assets/fonts");
             this.directory("assets/img", "src/assets/img");
@@ -118,7 +124,7 @@ module.exports = generators.Base.extend({
                 this.templatePath("_layout.jade"),
                 this.destinationPath("src/_layout.jade"),
                 {
-                    appname: _.startCase(this.appname)
+                    appname: _.startCase(this.config.get("appname"))
                 }
             );
         }
@@ -126,7 +132,11 @@ module.exports = generators.Base.extend({
     conflicts: function() {
     },
     install: function() {
+        this.installDependencies({
+            skipInstall: this.options["skip-install"]
+        });
     },
     end: function() {
+        this.log(chalk.green.bold("Project generated!"));
     }
 });
