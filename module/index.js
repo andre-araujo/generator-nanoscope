@@ -42,21 +42,40 @@ module.exports = generators.Base.extend({
         );
     },
     writing: function() {
-        // var modulePrefix = function(type) {
-        //     var prefix;
-        //     //
-        //     // if(type === "")
-        // };
+        var modulePrefix = function(type) {
+            var prefix;
+
+            if(type === "atom") {
+                return "atm"
+            }
+            if(type === "molecule") {
+                return "mol"
+            }
+            if(type === "organism") {
+                return "org"
+            }
+        };
 
         this.fs.copyTpl(
             this.templatePath("_index.jade"),
             this.destinationPath("src/_modules/_" + this.moduleType + "s/" + this.name + "/_index.jade"),
             {
-                moduleName: this.name,
-                modulePrefix: this.name,
+                moduleName: _.kebabCase(this.name),
+                modulePrefix: _.camelCase(modulePrefix(this.moduleType) + " " + this.name),
                 moduleType: this.moduleType
             }
         )
+
+        this.fs.copyTpl(
+            this.templatePath("_main.sass"),
+            this.destinationPath("src/_modules/_" + this.moduleType + "s/" + this.name + "/_main.sass"),
+            {
+                moduleName: _.kebabCase(this.name),
+                modulePrefix: _.camelCase(modulePrefix(this.moduleType) + " " + this.name),
+                moduleType: this.moduleType
+            }
+        )
+
         var exec = require('child_process').exec;
         var cmd = 'gulp modules';
 
