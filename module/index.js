@@ -58,7 +58,7 @@ module.exports = generators.Base.extend({
 
         this.fs.copyTpl(
             this.templatePath("_index.jade"),
-            this.destinationPath("src/_modules/_" + this.moduleType + "s/" + this.name + "/_index.jade"),
+            this.destinationPath("src/_modules/_" + this.moduleType + "s/" + _.kebabCase(this.name) + "/_index.jade"),
             {
                 moduleName: _.kebabCase(this.name),
                 modulePrefix: _.camelCase(modulePrefix(this.moduleType) + " " + this.name),
@@ -68,7 +68,7 @@ module.exports = generators.Base.extend({
 
         this.fs.copyTpl(
             this.templatePath("_main.sass"),
-            this.destinationPath("src/_modules/_" + this.moduleType + "s/" + this.name + "/_main.sass"),
+            this.destinationPath("src/_modules/_" + this.moduleType + "s/" + _.kebabCase(this.name) + "/_main.sass"),
             {
                 moduleName: _.kebabCase(this.name),
                 modulePrefix: _.camelCase(modulePrefix(this.moduleType) + " " + this.name),
