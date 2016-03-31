@@ -1,6 +1,6 @@
 # generator-nanoscope
+
 Generator for **nanoscope** framework, it scaffolds a project based on atomic design, using jade, sass, and harpjs
----
 
 ## Setup a new project
 Make sure that you have yeoman installed
