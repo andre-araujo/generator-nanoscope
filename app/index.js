@@ -101,7 +101,7 @@ module.exports = generators.Base.extend({
         },
         gulp: function() {
             this.copy("_gulpfile.js", "gulpfile.js")
-            this.copy("_gulp.config.js", "gulp.config.js")
+            this.directory("gulp-tasks", "gulp-tasks")
         },
         statics: function() {
             // inside assets
