@@ -1,16 +1,21 @@
 'use strict';
 
 /* required modules
-gulp
-browser-sync
-harp
+* gulp
+* browser-sync (Browser reloader)
+* harp (Static server)
+* gulp-babel (ES6)
+* gulp-plumber (Prevent pipe breaking caused by errors from gulp plugins)
+* gulp-concat (concat files)
 */
 
 var gulp        = require('gulp');
+var harp        = require('harp');
 
 //GULP TASKS
 var taskModules = require('./gulp-tasks/modules');
 var taskServe   = require('./gulp-tasks/serve');
+var taskScripts = require('./gulp-tasks/scripts')
 
 gulp.task('serve', taskServe);
 
@@ -22,6 +27,8 @@ gulp.task('compile', function () {
         }
     })
 });
+
+gulp.task('scripts', taskScripts);
 
 gulp.task('modules', taskModules);
 
