@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 var generators = require("yeoman-generator"),
     _ = require("lodash");
@@ -8,7 +8,6 @@ module.exports = generators.Base.extend({
         generators.Base.apply(this, arguments);
 
         this.argument('name', { type: String, required: true });
-        console.log("test", this.name)
     },
     prompting: function() {
         var done = this.async();
@@ -34,7 +33,6 @@ module.exports = generators.Base.extend({
             },
             function(resp) {
                 this.moduleType = resp.moduleType;
-                console.log(this.moduleType)
 
                 done();
 
@@ -46,13 +44,13 @@ module.exports = generators.Base.extend({
             var prefix;
 
             if(type === "atom") {
-                return "atm"
+                return "atm";
             }
             if(type === "molecule") {
-                return "mol"
+                return "mol";
             }
             if(type === "organism") {
-                return "org"
+                return "org";
             }
         };
 
@@ -64,7 +62,7 @@ module.exports = generators.Base.extend({
                 modulePrefix: _.camelCase(modulePrefix(this.moduleType) + " " + this.name),
                 moduleType: this.moduleType
             }
-        )
+        );
 
         this.fs.copyTpl(
             this.templatePath("_main.sass"),
@@ -76,8 +74,8 @@ module.exports = generators.Base.extend({
             }
         )
 
-        var exec = require('child_process').exec;
-        var cmd = 'gulp modules';
+        var exec = require("child_process").exec;
+        var cmd = "gulp modules";
 
         exec(cmd, function(error, stdout, stderr) {
           // command output is in stdout

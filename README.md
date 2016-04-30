@@ -1,5 +1,7 @@
 # generator-nanoscope
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/547a02b52ad6499da242630bd42fe8ab)](https://www.codacy.com/app/andre_luis9214/generator-nanoscope?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=aluis92/generator-nanoscope&amp;utm_campaign=Badge_Grade)
+
 Generator for **nanoscope** framework, it scaffolds a project based on atomic design, using jade, sass, and harpjs
 
 ## Setup a new project

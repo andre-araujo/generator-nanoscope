@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 var generators = require("yeoman-generator"),
     _ = require("lodash"),
@@ -54,14 +54,13 @@ module.exports = generators.Base.extend({
             }
 
         ], function(resp) {
-            console.log(resp);
 
             this.config.set("appname", resp.appname);
 
             this.config.set("libs", {
                 jquery: _.includes(resp.jslibs, "jquery"),
                 umbrellajs: _.includes(resp.jslibs, "umbrellajs")
-            })
+            });
 
             this.config.save();
 
@@ -76,34 +75,34 @@ module.exports = generators.Base.extend({
     writing: {
 
         packageJson: function() {
-            this.copy("_package.json", "package.json")
+            this.copy("_package.json", "package.json");
         },
         git: function() {
-            this.copy("gitignore", ".gitignore")
+            this.copy("gitignore", ".gitignore");
         },
         bower: function() {
             var bowerJson = {
                 name: this.config.get("appname"),
-                license: 'MIT',
+                license: "MIT",
                 dependencies: {}
             };
 
             if(this.config.get("libs").jquery) {
-                bowerJson.dependencies['jquery'] = '~1.12.0';
+                bowerJson.dependencies['jquery'] = "~1.12.0";
             }
 
             if(this.config.get("libs").umbrella) {
-                bowerJson.dependencies['umbrella'] = '^2.0.1';
+                bowerJson.dependencies["umbrella"] = "^2.0.1";
             }
-            bowerJson.dependencies['umbrella'] = '^2.0.1';
+            bowerJson.dependencies["umbrella"] = "^2.0.1";
 
-            this.fs.writeJSON('bower.json', bowerJson);
+            this.fs.writeJSON("bower.json", bowerJson);
 
-            this.copy("bowerrc", ".bowerrc")
+            this.copy("bowerrc", ".bowerrc");
         },
         gulp: function() {
-            this.copy("_gulpfile.js", "gulpfile.js")
-            this.directory("gulp-tasks", "gulp-tasks")
+            this.copy("_gulpfile.js", "gulpfile.js");
+            this.directory("gulp-tasks", "gulp-tasks");
         },
         statics: function() {
             // inside assets
