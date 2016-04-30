@@ -4,18 +4,19 @@
 * gulp
 * browser-sync (Browser reloader)
 * harp (Static server)
-* gulp-babel (ES6)
+* browserify (js modules)
+* babelify (babel - es6 transform for browserify)
 * gulp-plumber (Prevent pipe breaking caused by errors from gulp plugins)
 * gulp-concat (concat files)
 */
 
-var gulp        = require('gulp');
-var harp        = require('harp');
+var gulp            = require('gulp');
+var harp            = require('harp');
 
 //GULP TASKS
-var taskModules = require('./gulp-tasks/modules');
-var taskServe   = require('./gulp-tasks/serve');
-var taskScripts = require('./gulp-tasks/scripts')
+var taskModules     = require('./gulp-tasks/modules');
+var taskServe       = require('./gulp-tasks/serve');
+var tasksBrowserify = require('./gulp-tasks/browserify');
 
 gulp.task('serve', taskServe);
 
@@ -28,7 +29,7 @@ gulp.task('compile', function () {
     })
 });
 
-gulp.task('scripts', taskScripts);
+gulp.task('browserify', tasksBrowserify);
 
 gulp.task('modules', taskModules);
 

@@ -1,6 +1,6 @@
 require("babel-polyfill");
 
 (function(){
-    exemple = require('./exemple')();
+    const exemple = require('./exemple')();
     exemple.init();
 })()

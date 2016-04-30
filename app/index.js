@@ -34,19 +34,21 @@ module.exports = generators.Base.extend({
                 //store: true
             },
             {
-                type: "checkbox",
+                type: "list",
                 name: "jslibs",
-                message: "Select JavaScript libraries that you wanna use.",
+                message: "Witch framework you want to use?",
                 choices: [
                     {
                         name: "Jquery",
-                        value: "jquery",
-                        checked: "true"
+                        value: "jquery"
                     },
                     {
                         name: "Umbrellajs",
-                        value: "umbrellajs",
-                        checked: "true"
+                        value: "umbrellajs"
+                    },
+                    {
+                        name: "None",
+                        value: "none"
                     }
                 ],
             }
