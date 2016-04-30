@@ -2,6 +2,7 @@ var browserSync = require('browser-sync');
 var reload      = browserSync.reload;
 var harp        = require('harp');
 var gulp        = require('gulp');
+var scripts     = require('./scripts');
 
 var base = __dirname + "/..";
 
@@ -22,6 +23,11 @@ module.exports = function() {
         });
 
         gulp.watch(["src/**/*.jade", "src/**/*.json"], function () {
+            reload();
+        });
+
+        gulp.watch(["src/assets/scripts/_js/*.js"], function () {
+            scripts();
             reload();
         });
     })

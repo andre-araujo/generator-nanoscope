@@ -1,0 +1,18 @@
+@mixin defaultFont($color: #333, $font-size: 1em, $lineHeight: 1, $spacing: 0.063em)
+    color: $color
+    font-size: $font-size
+    line-height: $lineHeight
+    letter-spacing: $spacing
+
+.txt-12-arial
+    @include defaultFont(#888, 0.750em, 1)
+    font-family: 'Arial'
+
+.txt-12-arial_black
+    @include defaultFont(#888, 0.750em, 1)
+    font-family: 'Arial Black'
+
+.txt-12-arial_black--upper
+    @include defaultFont(#888, 0.750em, 1)
+    font-family: 'Arial Black'
+    text-transform: uppercase
